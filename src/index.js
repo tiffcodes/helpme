@@ -3,18 +3,19 @@ import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-
-import rootReducer from './reducers/index';
+import reducer from './reducers/';
+import Container from './components/Classroom/Container';
 
 const store = createStore(
-    rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 const App = () => (
     <Provider store={store}>
         <Router>
             <div>
-                Nothing to see here.
+                <h1>HelpCue</h1>
+                <Container />
             </div>
         </Router>
     </Provider>

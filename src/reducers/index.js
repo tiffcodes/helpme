@@ -1,14 +1,30 @@
-import { combineReducers } from 'redux';
+const initialState = [];
 
-const initialState = {};
-
-const counter = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
+    case 'ADD_QUESTION':
+        return [
+            ...state,
+            {
+                id: action.id,
+                question: action.question,
+                completed: false,
+            },
+        ];
+    case 'COMPLETE_QUESTION':
+        return state.map((question) => {
+            if (question.id === action.id) {
+                return {
+                    id: question.id,
+                    question: question.question,
+                    completed: !question.completed,
+                };
+            }
+            return question;
+        });
     default:
         return state;
     }
 };
 
-const rootReducer = combineReducers({ counter });
-
-export default rootReducer;
+export default reducer;

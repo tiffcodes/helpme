@@ -60,16 +60,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HackerYou/readme.git"
+    "url": "git+https://github.com/HackerYou/helpcue.git"
   },
   "keywords": [
-    "readme",
+    "helpcue",
     "hackeryou"
   ],
   "author": "The HackerYou Dev Team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HackerYou/readme/issues"
+    "url": "https://github.com/HackerYou/helpcue/issues"
   },
-  "homepage": "https://github.com/HackerYou/readme#readme"
+  "homepage": "https://github.com/HackerYou/helpcue"
 }
