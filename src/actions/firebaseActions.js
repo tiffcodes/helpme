@@ -13,15 +13,12 @@ export const addQuestion = (question, id) => {
 };
 
 export const createQuestionInDB = (question) => {
-    return (dispatch) => {
+    return () => {
         const newQuestion = {
             question,
         };
         const qRefPush = questionsRef.push();
-        qRefPush.set(newQuestion).then(() => {
-            const id = qRefPush.key;
-            dispatch(addQuestion(question, id));
-        });
+        qRefPush.set(newQuestion);
     };
 };
 
