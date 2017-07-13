@@ -18,7 +18,7 @@ export default class QuestionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addQuestion(this.state.inputValue);
+        this.props.createQuestionInDB(this.state.inputValue);
         this.setState({
             inputValue: '',
         });

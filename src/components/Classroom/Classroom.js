@@ -21,7 +21,7 @@ export default class Classroom extends React.Component {
             <div>
                 <h1>Ask your question:</h1>
                 <QuestionForm
-                  addQuestion={this.props.addQuestion}
+                  createQuestionInDB={this.props.createQuestionInDB}
                 />
                 {this.props.questions.map((question, i) => {
                     return (
@@ -38,7 +38,7 @@ export default class Classroom extends React.Component {
 }
 
 Classroom.propTypes = {
-    addQuestion: PropTypes.func.isRequired,
+    createQuestionInDB: PropTypes.func.isRequired,
     completeQuestion: PropTypes.func.isRequired,
 };
 

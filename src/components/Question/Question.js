@@ -2,7 +2,6 @@ import React from 'react';
 import './Question.scss';
 
 const Question = ({ question, handleComplete }) => {
-    console.log(question.id);
     return (
         <ul>
             <li className={question.completed ? 'completed' : 'notCompleted'} >

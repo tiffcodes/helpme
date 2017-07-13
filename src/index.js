@@ -1,20 +1,38 @@
 import React from 'react';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+
 import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from './reducers/';
+import rootReducer from './reducers/index';
 import Container from './components/Classroom/Container';
+import Dashboard from './components/Dashboard/Dashboard';
+import Loader from './components/Loader/Loader';
+import initialState from './initialState';
+import { startListeningForQuestions } from './actions/firebaseActions';
+
+
+const middleware = [thunk];
+const enhancers = [];
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-    reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    rootReducer,
+    initialState,
+    composeEnhancers(
+        applyMiddleware(...middleware),
+        ...enhancers,
+    ),
 );
 
 const App = () => (
     <Provider store={store}>
         <Router>
             <div>
+                <Loader />
                 <h1>HelpCue</h1>
+                <Dashboard />
                 <Container />
             </div>
         </Router>
@@ -23,3 +41,4 @@ const App = () => (
 
 render(<App />, document.getElementById('app'));
 
+store.dispatch(startListeningForQuestions());
