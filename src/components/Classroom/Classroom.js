@@ -10,10 +10,15 @@ export default class Classroom extends React.Component {
             inputValue: '',
         };
         this.handleComplete = this.handleComplete.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleComplete(id, completed) {
         this.props.editQuestion(id, completed);
+    }
+
+    handleDelete(id) {
+        this.props.deleteQuestionFromDB(id);
     }
 
     render() {
@@ -29,6 +34,7 @@ export default class Classroom extends React.Component {
                           key={`question-${i}`}
                           handleComplete={this.handleComplete}
                           question={question}
+                          deleteQuestion={this.handleDelete}
                         />
                     );
                 })}
@@ -40,6 +46,7 @@ export default class Classroom extends React.Component {
 Classroom.propTypes = {
     createQuestionInDB: PropTypes.func.isRequired,
     editQuestion: PropTypes.func.isRequired,
+    deleteQuestionFromDB: PropTypes.func.isRequired,
 };
 
 Classroom.defaultProps = {

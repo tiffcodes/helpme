@@ -2,7 +2,6 @@ import React from 'react';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-
 import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import rootReducer from './reducers/index';
@@ -11,7 +10,6 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Loader from './components/Loader/Loader';
 import initialState from './initialState';
 import { startListeningForQuestions } from './actions/firebaseActions';
-
 
 const middleware = [thunk];
 const enhancers = [];

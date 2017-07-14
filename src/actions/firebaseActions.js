@@ -33,11 +33,10 @@ export const completeQuestion = (questionId) => {
 };
 
 export const editQuestion = (id, completed) => {
-    return (dispatch) => {
-        console.log(id, dispatch);
+    return () => {
         questionsRef.child(id).update({
             completed: !completed,
-        }).then(dispatch(completeQuestion(id)));
+        });
     };
 };
 
@@ -51,11 +50,9 @@ export const deleteQuestion = (id) => {
 };
 
 
-export const deleteQuestionFromDB = ({ id }) => {
-    return (dispatch) => {
-        questionsRef.child(id).remove().then(() => {
-            dispatch(deleteQuestion(id));
-        });
+export const deleteQuestionFromDB = (id) => {
+    return () => {
+        questionsRef.child(id).remove();
     };
 };
 
@@ -67,8 +64,12 @@ export const startListeningForQuestions = () => {
             dispatch(addQuestion(snapshot.val().question, snapshot.key, snapshot.val().completed));
         });
 
+        questionsRef.on('child_changed', (snapshot) => {
+            dispatch(completeQuestion(snapshot.key));
+        });
+
         questionsRef.on('child_removed', (snapshot) => {
-            dispatch(deleteQuestion(snapshot.val));
+            dispatch(deleteQuestion(snapshot.key));
         });
     };
 };
