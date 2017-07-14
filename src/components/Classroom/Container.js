@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-// import { completeQuestion } from '../../actions/index';
 import { createQuestionInDB, editQuestion } from '../../actions/firebaseActions';
 import Classroom from './Classroom';
 
@@ -12,8 +11,8 @@ const mapDispatchToProps = dispatch => ({
         console.log('container q', question);
         dispatch(createQuestionInDB(question));
     },
-    editQuestion: (id) => {
-        dispatch(editQuestion(id));
+    editQuestion: (id, completed) => {
+        dispatch(editQuestion(id, completed));
     },
 });
 

@@ -67,10 +67,6 @@ export const startListeningForQuestions = () => {
             dispatch(addQuestion(snapshot.val().question, snapshot.key, snapshot.val().completed));
         });
 
-        questionsRef.on('child_changed', (snapshot) => {
-            dispatch(editQuestion(snapshot.key, snapshot.val().completed));
-        });
-
         questionsRef.on('child_removed', (snapshot) => {
             dispatch(deleteQuestion(snapshot.val));
         });

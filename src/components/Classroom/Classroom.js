@@ -12,8 +12,8 @@ export default class Classroom extends React.Component {
         this.handleComplete = this.handleComplete.bind(this);
     }
 
-    handleComplete(id) {
-        this.props.editQuestion(id);
+    handleComplete(id, completed) {
+        this.props.editQuestion(id, completed);
     }
 
     render() {
