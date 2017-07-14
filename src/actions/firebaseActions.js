@@ -4,7 +4,7 @@ const questionsRef = database.ref('/questions');
 
  // create questions:
 
-export const addQuestion = (question, id, completed) => {
+export const addQuestion = (id, question, completed) => {
     return {
         type: 'ADD_QUESTION',
         id,
@@ -16,6 +16,7 @@ export const addQuestion = (question, id, completed) => {
 export const createQuestionInDB = (question) => {
     return () => {
         const newQuestion = {
+            timestamp: Date.now(),
             question,
         };
         const qRefPush = questionsRef.push();
@@ -23,7 +24,7 @@ export const createQuestionInDB = (question) => {
     };
 };
 
-// edit questions:
+// complete questions:
 
 export const completeQuestion = (questionId) => {
     return {
@@ -32,11 +33,48 @@ export const completeQuestion = (questionId) => {
     };
 };
 
-export const editQuestion = (id, completed) => {
+export const completeQuestionInDB = (id, completed) => {
     return () => {
         questionsRef.child(id).update({
             completed: !completed,
         });
+    };
+};
+
+// edit questions:
+
+// export const editQuestion = (id, question) => {
+//     return () => {
+//         questionsRef.child(id).update({
+//             question,
+//         });
+//     };
+// };
+
+export const updateQuestion = (id, question, completed) => {
+    return {
+        type: 'UPDATE_QUESTION',
+        id,
+        question,
+        completed,
+    };
+};
+
+export const updateQuestionInDB = (id, whatChanged, question, completed) => {
+    return (dispatch) => {
+        if (whatChanged === 'completed') {
+            questionsRef.child(id).update({
+                completed: !completed,
+            }).then(
+                dispatch(updateQuestion(id, question, !completed)),
+            );
+        } else if (whatChanged === 'question') {
+            questionsRef.child(id).update({
+                question,
+            }).then(
+                dispatch(completeQuestion(id)),
+            );
+        }
     };
 };
 
@@ -61,11 +99,19 @@ export const deleteQuestionFromDB = (id) => {
 export const startListeningForQuestions = () => {
     return (dispatch) => {
         questionsRef.on('child_added', (snapshot) => {
-            dispatch(addQuestion(snapshot.val().question, snapshot.key, snapshot.val().completed));
+            dispatch(addQuestion(
+                snapshot.key,
+                snapshot.val().question,
+                snapshot.val().completed,
+            ));
         });
 
         questionsRef.on('child_changed', (snapshot) => {
-            dispatch(completeQuestion(snapshot.key));
+            dispatch(updateQuestion(
+                snapshot.key,
+                snapshot.val().question,
+                snapshot.val().completed,
+            ));
         });
 
         questionsRef.on('child_removed', (snapshot) => {

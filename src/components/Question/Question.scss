@@ -15,7 +15,7 @@
 
 button {
 	background: none;
-	border: 0;
+	border: 1px solid black;
 }
 
 .visuallyhidden {
@@ -27,4 +27,8 @@ button {
     height: 1px !important;
     width: 1px !important;
     overflow: hidden;
+}
+
+body, button {
+	font-family: monospace;
 }

@@ -18,6 +18,19 @@ const questions = (state = initialState, action) => {
             return question.id !== action.id;
         });
     }
+    case 'UPDATE_QUESTION': {
+        const questionList = Array.from(state);
+        return questionList.map((question) => {
+            if (question.id === action.id) {
+                return {
+                    id: question.id,
+                    question: question.question,
+                    completed: question.completed,
+                };
+            }
+            return question;
+        });
+    }
     case 'COMPLETE_QUESTION': {
         const questionList = Array.from(state);
         return questionList.map((question) => {

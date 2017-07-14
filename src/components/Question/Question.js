@@ -17,7 +17,8 @@ const Question = ({ question, handleComplete, deleteQuestion }) => {
                 </button>
                 <p>{question.question}</p>
                 <button onClick={() =>
-                    handleComplete(question.id, question.completed)}
+                    // id, question, completed
+                    handleComplete(question.id, question.question, question.completed)}
                 >
                     being helped?
                 </button>
