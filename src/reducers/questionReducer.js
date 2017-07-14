@@ -8,7 +8,7 @@ const questions = (state = initialState, action) => {
             {
                 id: action.id,
                 question: action.question,
-                completed: false,
+                completed: action.completed,
             },
         ];
     }

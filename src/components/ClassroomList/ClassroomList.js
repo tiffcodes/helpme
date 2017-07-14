@@ -3,7 +3,7 @@ import React from 'react';
 const ClassroomList = () => {
     return (
         <ul>
-            <li>list</li>
+            <li>classroomList snub</li>
         </ul>
     );
 };

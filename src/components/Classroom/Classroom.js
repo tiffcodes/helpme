@@ -13,7 +13,7 @@ export default class Classroom extends React.Component {
     }
 
     handleComplete(id) {
-        this.props.completeQuestion(id);
+        this.props.editQuestion(id);
     }
 
     render() {
@@ -39,7 +39,7 @@ export default class Classroom extends React.Component {
 
 Classroom.propTypes = {
     createQuestionInDB: PropTypes.func.isRequired,
-    completeQuestion: PropTypes.func.isRequired,
+    editQuestion: PropTypes.func.isRequired,
 };
 
 Classroom.defaultProps = {
