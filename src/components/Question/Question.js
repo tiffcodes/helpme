@@ -16,6 +16,7 @@ const Question = ({ question, handleComplete, deleteQuestion }) => {
                     <span className="visuallyhidden">Delete Question</span>
                 </button>
                 <p>{question.question}</p>
+                <input />
                 <button onClick={() =>
                     // id, question, completed
                     handleComplete(question.id, question.question, question.completed)}

@@ -4,12 +4,13 @@ const questionsRef = database.ref('/questions');
 
  // create questions:
 
-export const addQuestion = (id, question, completed) => {
+export const addQuestion = (id, question, completed, timestamp) => {
     return {
         type: 'ADD_QUESTION',
         id,
         question,
         completed,
+        timestamp,
     };
 };
 
@@ -17,6 +18,7 @@ export const createQuestionInDB = (question) => {
     return () => {
         const newQuestion = {
             timestamp: Date.now(),
+            completed: false,
             question,
         };
         const qRefPush = questionsRef.push();
@@ -24,6 +26,7 @@ export const createQuestionInDB = (question) => {
     };
 };
 
+// edit questions:
 // complete questions:
 
 export const completeQuestion = (questionId) => {
@@ -33,29 +36,10 @@ export const completeQuestion = (questionId) => {
     };
 };
 
-export const completeQuestionInDB = (id, completed) => {
-    return () => {
-        questionsRef.child(id).update({
-            completed: !completed,
-        });
-    };
-};
-
-// edit questions:
-
-// export const editQuestion = (id, question) => {
-//     return () => {
-//         questionsRef.child(id).update({
-//             question,
-//         });
-//     };
-// };
-
-export const updateQuestion = (id, question, completed) => {
+export const updateQuestion = (id, completed) => {
     return {
         type: 'UPDATE_QUESTION',
         id,
-        question,
         completed,
     };
 };
@@ -66,13 +50,13 @@ export const updateQuestionInDB = (id, whatChanged, question, completed) => {
             questionsRef.child(id).update({
                 completed: !completed,
             }).then(
-                dispatch(updateQuestion(id, question, !completed)),
+                dispatch(completeQuestion(id, !completed)),
             );
         } else if (whatChanged === 'question') {
             questionsRef.child(id).update({
                 question,
             }).then(
-                dispatch(completeQuestion(id)),
+                dispatch(updateQuestion(id)),
             );
         }
     };
@@ -86,7 +70,6 @@ export const deleteQuestion = (id) => {
         id,
     };
 };
-
 
 export const deleteQuestionFromDB = (id) => {
     return () => {
@@ -103,6 +86,7 @@ export const startListeningForQuestions = () => {
                 snapshot.key,
                 snapshot.val().question,
                 snapshot.val().completed,
+                snapshot.val().timestamp,
             ));
         });
 

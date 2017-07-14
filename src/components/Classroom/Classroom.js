@@ -54,7 +54,7 @@ export default class Classroom extends React.Component {
 
 Classroom.propTypes = {
     createQuestionInDB: PropTypes.func.isRequired,
-    completeQuestionInDB: PropTypes.func.isRequired,
+    updateQuestionInDB: PropTypes.func.isRequired,
     deleteQuestionFromDB: PropTypes.func.isRequired,
 };
 
