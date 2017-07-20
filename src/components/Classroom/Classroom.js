@@ -24,7 +24,7 @@ export default class Classroom extends React.Component {
     }
 
     editQuestion(id, question, completed) {
-        console.log(question, id);
+        console.log('edit question running:', question, id);
         const whatChanged = 'question';
         this.props.updateQuestionInDB(id, whatChanged, question, completed);
     }
@@ -36,14 +36,14 @@ export default class Classroom extends React.Component {
                 <QuestionForm
                   createQuestionInDB={this.props.createQuestionInDB}
                 />
-                {this.props.questions.map((question, i) => {
+                {this.props.questions.map((question) => {
                     return (
                         <Question
-                          key={`question-${i}`}
+                          key={`question-${question.id}`}
                           handleComplete={this.handleComplete}
                           question={question}
                           deleteQuestion={this.handleDelete}
-                          // editQuestion={this.updateQuestion}
+                          editQuestion={this.editQuestion}
                         />
                     );
                 })}
