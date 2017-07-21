@@ -24,7 +24,6 @@ export default class Classroom extends React.Component {
     }
 
     editQuestion(id, question, completed) {
-        console.log('edit question running:', question, id);
         const whatChanged = 'question';
         this.props.updateQuestionInDB(id, whatChanged, question, completed);
     }

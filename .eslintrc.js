@@ -20,6 +20,7 @@ module.exports = {
         "react/no-array-index-key": 0,
         "no-console": 0,
         "no-console": ["error", { allow: ["warn", "error", "log"] }],
-        "no-underscore-dangle": 0
+        "no-underscore-dangle": 0,
+        "react/no-did-mount-set-state": 0
     }
 };

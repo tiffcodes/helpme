@@ -11,7 +11,19 @@ export default class Question extends React.Component {
         this.startEditing = this.startEditing.bind(this);
         this.checkEditing = this.checkEditing.bind(this);
         this.updateInput = this.updateInput.bind(this);
-        this.handleSubmitQ = this.handleSubmitQ.bind(this);
+        this.handleFinishEditingQuestion = this.handleFinishEditingQuestion.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            inputValue: this.props.question.question,
+        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            inputValue: nextProps.question.question,
+        });
     }
 
     updateInput(e) {
@@ -27,7 +39,7 @@ export default class Question extends React.Component {
         });
     }
 
-    handleSubmitQ() {
+    handleFinishEditingQuestion() {
         this.setState({
             editing: false,
         });
@@ -43,11 +55,11 @@ export default class Question extends React.Component {
             return (
                 <div>
                     <input
-                      defaultValue={this.props.question.question}
+                      defaultValue={this.state.inputValue}
                       onChange={e => this.updateInput(e)}
                     />
                     <button onClick={() =>
-                        this.handleSubmitQ()}
+                        this.handleFinishEditingQuestion()}
                     >
                         submit
                     </button>

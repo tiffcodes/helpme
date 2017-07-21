@@ -24,7 +24,7 @@ const questions = (state = initialState, action) => {
         return questionList.map((question) => {
             if (question.id === action.id) {
                 return Object.assign({},
-                    question, { question: question.question });
+                    question, { question: action.question });
             }
             return question;
         });
@@ -32,7 +32,6 @@ const questions = (state = initialState, action) => {
     case 'COMPLETE_QUESTION': {
         const questionList = Array.from(state);
         return questionList.map((question) => {
-            console.log('question', question);
             if (question.id === action.id) {
                 return Object.assign({},
                     question, { completed: !question.completed });
