@@ -27,7 +27,6 @@ export const createQuestionInDB = (question) => {
 };
 
 // edit questions:
-// complete questions:
 
 export const updateQuestion = (id, question, completed) => {
     return {
