@@ -39,7 +39,8 @@ export default class Question extends React.Component {
         });
     }
 
-    handleFinishEditingQuestion() {
+    handleFinishEditingQuestion(e) {
+        e.preventDefault();
         this.setState({
             editing: false,
         });
@@ -53,17 +54,17 @@ export default class Question extends React.Component {
     checkEditing() {
         if (this.state.editing === true) {
             return (
-                <div>
+                <form onSubmit={e =>
+                        this.handleFinishEditingQuestion(e)}
+                >
                     <input
                       defaultValue={this.state.inputValue}
                       onChange={e => this.updateInput(e)}
                     />
-                    <button onClick={() =>
-                        this.handleFinishEditingQuestion()}
-                    >
+                    <button type="submit">
                         submit
                     </button>
-                </div>
+                </form>
             );
         }
         return <p>{this.props.question.question}</p>;

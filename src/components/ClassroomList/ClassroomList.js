@@ -1,9 +1,10 @@
 import React from 'react';
+import Container from '../Classroom/Container';
 
 const ClassroomList = () => {
     return (
         <ul>
-            <li>classroomList snub</li>
+            <Container />
         </ul>
     );
 };

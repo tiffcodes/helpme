@@ -29,13 +29,6 @@ export const createQuestionInDB = (question) => {
 // edit questions:
 // complete questions:
 
-export const completeQuestion = (questionId) => {
-    return {
-        type: 'COMPLETE_QUESTION',
-        id: questionId,
-    };
-};
-
 export const updateQuestion = (id, question, completed) => {
     return {
         type: 'UPDATE_QUESTION',
@@ -46,19 +39,15 @@ export const updateQuestion = (id, question, completed) => {
 };
 
 export const updateQuestionInDB = (id, whatChanged, question, completed) => {
-    return (dispatch) => {
+    return () => {
         if (whatChanged === 'completed') {
             questionsRef.child(id).update({
                 completed: !completed,
-            }).then(
-                dispatch(completeQuestion(id, !completed)),
-            );
+            });
         }
         questionsRef.child(id).update({
             question,
-        }).then(
-            dispatch(updateQuestion(id, question, completed)),
-        );
+        });
     };
 };
 

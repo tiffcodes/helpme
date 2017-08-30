@@ -5,8 +5,7 @@ import thunk from 'redux-thunk';
 import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import rootReducer from './reducers/index';
-import Container from './components/Classroom/Container';
-import Dashboard from './components/Dashboard/Dashboard';
+import DashboardContainer from './components/Dashboard/DashboardContainer';
 import Loader from './components/Loader/Loader';
 import initialState from './initialState';
 import { startListeningForQuestions } from './actions/firebaseActions';
@@ -30,8 +29,7 @@ const App = () => (
             <div>
                 <Loader />
                 <h1>HelpCue</h1>
-                <Dashboard />
-                <Container />
+                <DashboardContainer />
             </div>
         </Router>
     </Provider>

@@ -1,6 +1,7 @@
 import React from 'react';
-// import { PropTypes } from 'prop-types';
+import { PropTypes } from 'prop-types';
 import ClassroomList from '../ClassroomList/ClassroomList';
+import CreateClassroom from '../CreateClassroom/CreateClassroom';
 
 export default class Dashboard extends React.Component {
     constructor() {
@@ -8,18 +9,43 @@ export default class Dashboard extends React.Component {
         this.state = {
             thing: '',
         };
-        this.method = this.method.bind(this);
+        this.createClassroom = this.createClassroom.bind(this);
+        this.updateClassroom = this.updateClassroom.bind(this);
+        this.deleteClassroom = this.deleteClassroom.bind(this);
     }
-    method() {
-        this.setState({
-            thing: 'thing',
-        });
+
+    createClassroom(name) {
+        this.props.createClassroomInDB(name);
     }
+
+    updateClassroom(id, name) {
+        this.props.updateClassroomInDB(id, name);
+    }
+
+    deleteClassroom(id) {
+        this.props.deleteClassroomFromDB(id);
+    }
+
     render() {
         return (
-            <button onClick={this.method}>
-                <ClassroomList />
-            </button>
+            <div>
+                <CreateClassroom createClassroom={this.createClassroom} />
+                <h2>Classrooms:</h2>
+                <ClassroomList
+                  deleteClassroom={this.deleteClassroom}
+                  updateClassroom={this.updateClassroom}
+                />
+            </div>
         );
     }
 }
+
+Dashboard.propTypes = {
+    createClassroomInDB: PropTypes.func.isRequired,
+    updateClassroomInDB: PropTypes.func.isRequired,
+    deleteClassroomFromDB: PropTypes.func.isRequired,
+};
+
+Dashboard.defaultProps = {
+    classrooms: [],
+};
