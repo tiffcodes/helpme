@@ -9,6 +9,7 @@ import DashboardContainer from './components/Dashboard/DashboardContainer';
 import Loader from './components/Loader/Loader';
 import initialState from './initialState';
 import { startListeningForQuestions } from './actions/firebaseActions';
+import { startListeningForClassrooms } from './actions/firebaseClassroomActions';
 
 const middleware = [thunk];
 const enhancers = [];
@@ -38,3 +39,4 @@ const App = () => (
 render(<App />, document.getElementById('app'));
 
 store.dispatch(startListeningForQuestions());
+store.dispatch(startListeningForClassrooms());

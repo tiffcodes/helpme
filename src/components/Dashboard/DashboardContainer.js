@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import { createClassroomInDB, updateClassroomInDB, deleteClassroomFromDB } from '../../actions/firebaseClassroomActions';
 import Dashboard from './Dashboard';
 
-const mapStateToProps = ({ classroom }) => ({
-    classroom,
+const mapStateToProps = ({ classrooms }) => ({
+    classrooms,
 });
 
 const mapDispatchToProps = dispatch => ({

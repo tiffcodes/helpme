@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { createQuestionInDB, updateQuestionInDB, deleteQuestionFromDB } from '../../actions/firebaseActions';
-import Classroom from './Classroom';
+import ClassroomList from './ClassroomList';
 
 // gets this object from the store:
-const mapStateToProps = ({ questions }) => ({
-    questions,
+const mapStateToProps = ({ classrooms }) => ({
+    classrooms,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,4 +19,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Classroom);
+export default connect(mapStateToProps, mapDispatchToProps)(ClassroomList);

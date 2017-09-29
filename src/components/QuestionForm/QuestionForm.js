@@ -1,4 +1,5 @@
 import React from 'react';
+import './QuestionForm.scss';
 
 export default class QuestionForm extends React.Component {
     constructor() {

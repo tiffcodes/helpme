@@ -9,6 +9,7 @@ export default class Classroom extends React.Component {
         this.state = {
             inputValue: '',
         };
+        console.log('props:', this.props);
         this.handleComplete = this.handleComplete.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.editQuestion = this.editQuestion.bind(this);
@@ -30,8 +31,9 @@ export default class Classroom extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Ask your question:</h1>
+            <li>
+                <h2>{this.props.classroomName}</h2>
+                <h3>Ask your question:</h3>
                 <QuestionForm
                   createQuestionInDB={this.props.createQuestionInDB}
                 />
@@ -46,7 +48,7 @@ export default class Classroom extends React.Component {
                         />
                     );
                 })}
-            </div>
+            </li>
         );
     }
 }

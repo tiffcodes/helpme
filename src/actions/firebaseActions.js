@@ -3,7 +3,6 @@ import { database } from '../functions/firebase';
 const questionsRef = database.ref('/questions');
 
  // create questions:
-
 export const addQuestion = (id, question, completed, timestamp) => {
     return {
         type: 'ADD_QUESTION',
@@ -14,6 +13,7 @@ export const addQuestion = (id, question, completed, timestamp) => {
     };
 };
 
+// create question in firebase:
 export const createQuestionInDB = (question) => {
     return () => {
         const newQuestion = {
@@ -26,8 +26,7 @@ export const createQuestionInDB = (question) => {
     };
 };
 
-// edit questions:
-
+// update question:
 export const updateQuestion = (id, question, completed) => {
     return {
         type: 'UPDATE_QUESTION',
@@ -37,6 +36,7 @@ export const updateQuestion = (id, question, completed) => {
     };
 };
 
+// update question in firebase:
 export const updateQuestionInDB = (id, whatChanged, question, completed) => {
     return () => {
         if (whatChanged === 'completed') {
@@ -50,8 +50,7 @@ export const updateQuestionInDB = (id, whatChanged, question, completed) => {
     };
 };
 
-// delete questions:
-
+// delete question:
 export const deleteQuestion = (id) => {
     return {
         type: 'DELETE_QUESTION',
@@ -59,14 +58,14 @@ export const deleteQuestion = (id) => {
     };
 };
 
+// delete question in firebase:
 export const deleteQuestionFromDB = (id) => {
     return () => {
         questionsRef.child(id).remove();
     };
 };
 
-// listen for changes:
-
+// listen for changes in firebase:
 export const startListeningForQuestions = () => {
     return (dispatch) => {
         questionsRef.on('child_added', (snapshot) => {

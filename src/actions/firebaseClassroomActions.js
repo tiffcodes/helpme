@@ -3,7 +3,6 @@ import { database } from '../functions/firebase';
 const classroomRef = database.ref('/classrooms');
 
  // create questions:
-
 export const addClassroom = (id, name) => {
     return {
         type: 'ADD_CLASSROOM',
@@ -24,7 +23,6 @@ export const createClassroomInDB = (name) => {
 };
 
 // edit classroom:
-
 export const updateClassroom = (id, name) => {
     return {
         type: 'UPDATE_CLASSROOM',
@@ -35,7 +33,6 @@ export const updateClassroom = (id, name) => {
 
 
 // delete questions:
-
 export const deleteClassroom = (id) => {
     return {
         type: 'DELETE_CLASSROOM',
@@ -50,7 +47,6 @@ export const deleteClassroomFromDB = (id) => {
 };
 
 // listen for changes:
-
 export const startListeningForClassrooms = () => {
     return (dispatch) => {
         classroomRef.on('child_added', (snapshot) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import ClassroomList from '../ClassroomList/ClassroomList';
+import ClassroomListContainer from '../ClassroomList/ClassroomListContainer';
 import CreateClassroom from '../CreateClassroom/CreateClassroom';
 
 export default class Dashboard extends React.Component {
@@ -29,9 +29,9 @@ export default class Dashboard extends React.Component {
     render() {
         return (
             <div>
-                <CreateClassroom createClassroom={this.createClassroom} />
                 <h2>Classrooms:</h2>
-                <ClassroomList
+                <CreateClassroom createClassroom={this.createClassroom} />
+                <ClassroomListContainer
                   deleteClassroom={this.deleteClassroom}
                   updateClassroom={this.updateClassroom}
                 />
